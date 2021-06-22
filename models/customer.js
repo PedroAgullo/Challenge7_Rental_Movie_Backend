@@ -18,17 +18,18 @@ module.exports = (sequelize, DataTypes) => {
   };
   Customer.init({
     name: DataTypes.STRING,
-    surname1: DataTypes.STRING,
-    surname2: DataTypes.STRING,
+    lastName1: DataTypes.STRING,
+    lastName2: DataTypes.STRING,
     dni: DataTypes.INTEGER,
     birthdate: DataTypes.DATE,
     phone: DataTypes.INTEGER,
     address: DataTypes.STRING,
     city: DataTypes.STRING,
-    postalcode: DataTypes.INTEGER,
-    mail: DataTypes.STRING,
+    postalCode: DataTypes.INTEGER,
+    email: DataTypes.STRING,
     password: DataTypes.STRING,
-    admin: DataTypes.BOOLEAN
+    admin: DataTypes.BOOLEAN,
+    isActive: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Customer',

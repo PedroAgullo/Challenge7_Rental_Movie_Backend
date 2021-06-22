@@ -44,9 +44,10 @@ router.post('/name', authenticate, async (req, res)=> {
 });
 
 //Add a new Customer
-router.post('/', checkMail, async (req, res)=> {
+router.post('/', async (req, res)=> {
     try {
         const body = req.body;
+        console.log("Body que recibimos: ",body);
         res.json(await customerController.newCustomer(body));
         
     } catch (err) {

@@ -28,7 +28,7 @@ class Client {
     }
 
     async newCustomer(body){
-
+        console.log("Recibimos los datos en el controlador: ", body);
         let password = body.password;
         let passwordHashed = bcrypt.hashSync(password, 10);
         body.password = passwordHashed;

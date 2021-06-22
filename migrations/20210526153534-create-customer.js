@@ -11,17 +11,17 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      surname1: {
+      lastName1: {
         type: Sequelize.STRING
       },
-      surname2: {
+      lastName2: {
         type: Sequelize.STRING
       },
       dni: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       birthdate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       phone: {
         type: Sequelize.INTEGER
@@ -32,17 +32,26 @@ module.exports = {
       city: {
         type: Sequelize.STRING
       },
-      postalcode: {
-        type: Sequelize.INTEGER
+      postalCode: {
+        type: Sequelize.STRING
       },
-      mail: {
+      email: {
         type: Sequelize.STRING
       },
       password: {
         type: Sequelize.STRING
       },
       admin: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      isActive:{
+        type: Sequelize.BOOLEAN,
+        default: false
+      },
+      premium:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
