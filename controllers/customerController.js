@@ -15,9 +15,9 @@ class Client {
         })
     }
 
-    async mailCustomer(mail){
+    async mailCustomer(email){
         return Customer.findOne({
-            where: {mail}
+            where: {email}
         })
     }
 

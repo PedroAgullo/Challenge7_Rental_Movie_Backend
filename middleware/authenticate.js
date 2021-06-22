@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const secret = "Competencia de Netflix";
+const secret = "Papá, y tú, ¿qué querías ser de mayor cuando eras pequeño? Y todo cambió...";
 
 const authenticate = (req, res, next) => {
 

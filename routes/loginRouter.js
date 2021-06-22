@@ -5,8 +5,8 @@ const customerController = require('../controllers/customerController');
 
 router.post('/', async (req, res)=> {
     try {
-
-        const mailCheck = req.body.mail;
+        console.log("Estoy en el router de login");
+        const mailCheck = req.body.email;
         const passwordCheck= req.body.password;
         let token = await loginController.validate(mailCheck,passwordCheck);
         let customer = await customerController.mailCustomer(mailCheck);

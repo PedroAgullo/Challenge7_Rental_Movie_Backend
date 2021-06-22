@@ -47,7 +47,7 @@ module.exports = {
       },
       isActive:{
         type: Sequelize.BOOLEAN,
-        default: false
+        defaultValue: false
       },
       premium:{
         type: Sequelize.BOOLEAN,

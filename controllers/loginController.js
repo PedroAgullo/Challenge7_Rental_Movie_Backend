@@ -1,13 +1,13 @@
 const customerController = require('./customerController');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const secret = "Competencia de Netflix";
+const secret = "Papá, y tú, ¿qué querías ser de mayor cuando eras pequeño? Y todo cambió...";
 
 
 class LoginController {
 
     async validate(mailCheck,passwordCheck){
-        
+        console.log("Estoy en el controlador de login");
         let customer = await customerController.mailCustomer(mailCheck);
         if (customer == null){
             throw new Error('Wrong user or password');
@@ -25,6 +25,7 @@ class LoginController {
             createdAt: new Date,
             isAdmin: customer.admin,
         };
+
 
         return jwt.sign(payload, secret);
     }
