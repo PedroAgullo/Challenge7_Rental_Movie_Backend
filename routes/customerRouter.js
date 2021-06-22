@@ -85,4 +85,20 @@ router.delete('/', admin, async (req, res) =>{
     }
 });
 
+
+
+router.get("/confirm/:confirmationCode", async (req, res) => {
+    try {
+      token = req.params.confirmationCode;
+      res.json(await customerController.updateActive(token));
+    } catch (err) {
+      return res.status(500).json({
+        message: err.message,
+      });
+    }
+  });
+  
+
+
+
 module.exports = router;
