@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.get('/latest', async (req, res) => {
+router.get('/popular', async (req, res) => {
     try {
         res.json(await moviesController.findPopular());
     }catch (err) {
