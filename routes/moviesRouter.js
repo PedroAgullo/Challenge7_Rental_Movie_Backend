@@ -5,8 +5,18 @@ const moviesController = require("../controllers/moviesController.js");
 
 router.get('/', async (req, res) => {
     try {
-        console.log("He llegado");
         res.json(await moviesController.findTopRated());
+    }catch (err) {
+        return res.status(500).json({
+        message: err.message
+        });
+    }
+});
+
+
+router.get('/latest', async (req, res) => {
+    try {
+        res.json(await moviesController.findPopular());
     }catch (err) {
         return res.status(500).json({
         message: err.message

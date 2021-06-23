@@ -9,6 +9,15 @@ class Pelicula{
         return res.data;
     }
 
+    //
+    async findPopular(){
+        
+        let res = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1');
+        console.log(res.data);
+        return res.data;
+    }
+
+
     async searchById(id){
         let res = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US`)
         return res.data;
