@@ -74,4 +74,30 @@ router.post('/genre', async (req, res)=> {
 });
 
 
+//Traer películas recomendadas sobre un ID de una película
+router.post('/recommendations', async (req, res)=> {
+    try {
+        let id = req.body.id;        
+        res.json(await moviesController.searchByGenre(id));
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
+
+
+//Encuentra videos sobre una película
+router.post('/video', async (req, res)=> {
+    try {
+        let id = req.body.id;
+        res.json(await moviesController.searchVideo(movieGenre));
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
+
+
 module.exports = router;
