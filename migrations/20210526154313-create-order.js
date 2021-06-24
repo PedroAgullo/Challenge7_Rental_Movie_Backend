@@ -25,7 +25,10 @@ module.exports = {
       },
       photoMovie:{
         type: Sequelize.STRING
-      },         
+      },   
+      title:{
+        type: Sequelize.STRING
+      },    
       // rentStart: {
       //   type: Sequelize.DATE
       // },

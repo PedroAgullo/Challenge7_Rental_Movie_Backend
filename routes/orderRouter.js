@@ -23,9 +23,8 @@ router.get('/city', admin, async (req, res) => {
 //Trae los pedidos de 1 usuario.
 router.post('/user', authenticate, async (req, res) => {
     try {
-        
         let body = req.body;
-        console.log("Datos que llegan del front", body);
+        console.log("Datos del body: ", body);
         res.json(await orderController.orderUser(body));
 
    }catch (err) {
