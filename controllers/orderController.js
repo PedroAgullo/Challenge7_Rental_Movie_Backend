@@ -16,6 +16,15 @@ class Rent{
 
     }
 
+    //Encuentra las ordenes de 1 usuario.
+    async orderUser(body){
+        let busqueda = await Order.findAll({
+            where: {customerId: body.userId}
+        });
+        console.log("Datos encontrados: ", busqueda);
+        return busqueda;
+    }
+
     async orderId(body){
 
         return Order.findByPk(body.id);

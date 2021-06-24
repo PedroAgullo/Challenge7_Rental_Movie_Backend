@@ -21,7 +21,7 @@ class LoginController {
         }
 
         let payload = {
-            customerId : customer.id,
+            idUser : customer.id,
             createdAt: new Date,
             isAdmin: customer.admin,
         };

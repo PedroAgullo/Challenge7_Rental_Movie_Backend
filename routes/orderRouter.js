@@ -19,10 +19,14 @@ router.get('/city', admin, async (req, res) => {
    }
 });
 
-router.post('/city', admin, async (req, res) => {
+
+//Trae los pedidos de 1 usuario.
+router.post('/user', authenticate, async (req, res) => {
     try {
-        let city = req.body.city;
-        res.json(await orderController.byCity(city));
+        
+        let body = req.body;
+        console.log("Datos que llegan del front", body);
+        res.json(await orderController.orderUser(body));
 
    }catch (err) {
        return res.status(500).json({
@@ -47,7 +51,7 @@ router.get('/', admin, async (req, res) => {
 
 
 //Find order by ID
-router.post('/id', authenticate, async (req, res)=> {             
+router.post('/id', async (req, res)=> {             
     try {
         let body = req.body;
         res.json(await orderController.orderId(body));
