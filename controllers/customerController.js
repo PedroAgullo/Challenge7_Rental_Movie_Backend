@@ -108,12 +108,16 @@ class Client {
     }
 
     async modifyCustomer(attributes){
-        return Customer.update(
+       await  Customer.update(
             //Datos que cambiamos
             {phone: attributes.phone, address: attributes.address, city: attributes.city, postalcode: attributes.postalcode},
             //Donde..
             {where: {id: attributes.id}}
         )
+
+        let resultado = this.customerId(attributes.id);
+
+        return resultado;
     }
 }
 
