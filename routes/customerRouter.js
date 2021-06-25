@@ -59,9 +59,9 @@ router.post('/', async (req, res)=> {
 
 
 //Modify a customer
-router.put('/', authenticate, async (req, res)=> {
+router.post('/update', authenticate, async (req, res)=> {
     try {
-        const attributes = req.body;
+        let attributes = req.body;
         res.json(await customerController.modifyCustomer(attributes));
         
     } catch (err) {

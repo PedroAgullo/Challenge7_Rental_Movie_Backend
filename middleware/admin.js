@@ -15,7 +15,7 @@ const admin = (req, res, next) => {
 
         let auth = jwt.verify(token,secret);
 
-        if(auth.isAdmin != true){
+        if(auth.admin != true){
             throw new Error("No tienes permiso para realizar esta acción de admin");
         }
 

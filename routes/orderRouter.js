@@ -37,8 +37,9 @@ router.post('/user', authenticate, async (req, res) => {
 
 
 //GET - ALL ORDERS - ADMIN
-router.get('/', admin, async (req, res) => {
+router.post('/all', admin, async (req, res) => {
      try {
+         console.log(req.body);
         res.json(await orderController.allOrders());
 
     }catch (err) {

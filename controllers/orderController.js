@@ -11,14 +11,12 @@ class Rent{
     }
 
     async allOrders(){
-
+        console.log("Entro en el controller de allOrders")
         return Order.findAll();
-
     }
 
     //Encuentra las ordenes de 1 usuario.
     async orderUser(body){
-        console.log(body);
         let busqueda = await Order.findAll({
             where: {customerId: body.customerId}
         });
