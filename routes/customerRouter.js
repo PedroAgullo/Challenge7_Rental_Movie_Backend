@@ -18,8 +18,9 @@ router.get('/', admin, async (req, res) => {
 });
 
 //Find customer by ID
-router.post('/id', authenticate, async (req, res)=> {             
+router.post('/id', admin, async (req, res)=> {             
     try {
+        console.log("Entro en el router de ID");
         let id = req.body.customerId;
         res.json(await customerController.customerId(id));
         
@@ -29,6 +30,41 @@ router.post('/id', authenticate, async (req, res)=> {
         });
     }
 });
+
+//Find customer by email
+router.post('/email', admin, async (req, res)=> {             
+    try {
+        console.log("Entro en el router de email", req.body);
+
+        let email = req.body.email;
+        res.json(await customerController.mailCustomer(email));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
+
+
+
+//Find customer by dni
+router.post('/dni', admin, async (req, res)=> {             
+    try {
+        let dni = req.body.dni;
+        res.json(await customerController.dniCustomer(dni));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
+
+
+
+
+
 
 //Find customer by name
 router.post('/name', authenticate, async (req, res)=> {          

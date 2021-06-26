@@ -19,12 +19,20 @@ class Client {
     }
 
     async mailCustomer(email){
-        return Customer.findOne({
+         let resultado = await Customer.findOne({
             where: {email}
+        })
+        return resultado;
+    }
+
+    async dniCustomer(dni){
+        return Customer.findOne({
+            where: {dni}
         })
     }
 
     async customerId(id){
+        console.log("Entro en el controller de user: ", id);
 
         return Customer.findByPk(id);
 

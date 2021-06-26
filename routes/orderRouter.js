@@ -53,6 +53,7 @@ router.post('/all', admin, async (req, res) => {
 //Find order by ID
 router.post('/id', async (req, res)=> {             
     try {
+        console.log(id)
         let body = req.body;
         res.json(await orderController.orderId(body));
         
