@@ -64,11 +64,75 @@ class Pelicula{
     }
 
 
+    //FUNCIONES PARA ACCEDER A LA BASE DE DATOS DE WORKBENCH
+
+    //Añade una nueva película a la base de datos.
     async newMovie(body){
         return Movie.create(body);
     }
 
-    
+
+        async playMovie(attributes){        
+        let numPlay = attributes.numPlay + 1;
+        
+        await  Movie.update(
+             //Datos que cambiamos
+             {numPlay: numPlay},
+             //Donde..
+             {where: {movieId: attributes.movieId}}
+         ) 
+         let resultado = this.movieID(attributes.movieId); 
+         return resultado;
+     }
+
+     async movieID(movieId){
+        return Customer.findOne({
+            where: {movieId}
+        })
+    }
+
+    //Modifica el número de reproducciones de la película.
+    async playMovie(attributes){        
+        let numPlay = attributes.numPlay + 1;
+        
+        await  Movie.update(
+             //Datos que cambiamos
+             {numPlay: numPlay},
+             //Donde..
+             {where: {movieId: attributes.movieId}}
+         ) 
+         let resultado = this.movieID(attributes.movieId); 
+         return resultado;
+     }
+
+    //Modifica el número de alquileres de la película.
+     async rentMovie(attributes){        
+        let numRent = attributes.numRent + 1;
+        
+        await  Movie.update(
+             //Datos que cambiamos
+             {numRent: numRent},
+             //Donde..
+             {where: {movieId: attributes.movieId}}
+         ) 
+         let resultado = this.movieID(attributes.movieId); 
+         return resultado;
+     }
+
+    //Modifica el número de compras de la película.
+     async buyMovie(attributes){        
+        let numBuy = attributes.numBuy + 1;
+        
+        await  Movie.update(
+             //Datos que cambiamos
+             {numBuy: numBuy},
+             //Donde..
+             {where: {movieId: attributes.movieId}}
+         ) 
+         let resultado = this.movieID(attributes.movieId); 
+         return resultado;
+     }
+
 
 
 }

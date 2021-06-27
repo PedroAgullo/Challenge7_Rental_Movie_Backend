@@ -118,4 +118,54 @@ router.post("/new", authenticate, async (req,res) =>{
 });
 
 
+
+router.post("/new", authenticate, async (req,res) =>{
+    try{
+        let body = req.body;
+        console.log(body);
+        res.json(await moviesController.newMovie(body));
+    }catch (err){
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+router.post("/play", authenticate, async (req,res) =>{
+    try{
+        let body = req.body;
+        console.log(body);
+        res.json(await moviesController.playMovie(body));
+    }catch (err){
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+router.post("/buy", authenticate, async (req,res) =>{
+    try{
+        let body = req.body;
+        console.log(body);
+        res.json(await moviesController.buyMovie(body));
+    }catch (err){
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+router.post("/rent", authenticate, async (req,res) =>{
+    try{
+        let body = req.body;
+        console.log(body);
+        res.json(await moviesController.rentMovie(body));
+    }catch (err){
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+
 module.exports = router;
