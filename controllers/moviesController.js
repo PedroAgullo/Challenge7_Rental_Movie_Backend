@@ -71,69 +71,84 @@ class Pelicula{
         return Movie.create(body);
     }
 
-
-        async playMovie(attributes){        
-        let numPlay = attributes.numPlay + 1;
-        
-        await  Movie.update(
-             //Datos que cambiamos
-             {numPlay: numPlay},
-             //Donde..
-             {where: {movieId: attributes.movieId}}
-         ) 
-         let resultado = this.movieID(attributes.movieId); 
-         return resultado;
-     }
-
-     async movieID(movieId){
-        return Customer.findOne({
+    async movieId(movieId){
+        return Movie.findOne({
             where: {movieId}
         })
     }
 
     //Modifica el número de reproducciones de la película.
-    async playMovie(attributes){        
-        let numPlay = attributes.numPlay + 1;
-        
+    async playMovie(attributes){ 
+
+        let search = this.movieId(attributes.movieId);
+
+        if (search != null){   
+            let numPlay = search.numPlay + 1;
+                 
         await  Movie.update(
              //Datos que cambiamos
              {numPlay: numPlay},
              //Donde..
              {where: {movieId: attributes.movieId}}
          ) 
-         let resultado = this.movieID(attributes.movieId); 
-         return resultado;
+        }else {
+            attributes.numBuy=0;
+            attributes.numRent=0;
+            this.newMovie(attributes);
+        }
+
+        let resultado = this.movieId(attributes.movieId); 
+        return resultado;
      }
 
     //Modifica el número de alquileres de la película.
-     async rentMovie(attributes){        
+        async rentMovie(attributes){
+
         let numRent = attributes.numRent + 1;
-        
-        await  Movie.update(
-             //Datos que cambiamos
-             {numRent: numRent},
-             //Donde..
-             {where: {movieId: attributes.movieId}}
-         ) 
-         let resultado = this.movieID(attributes.movieId); 
+
+
+        if (search != null){        
+            let numRent = search.numRent + 1;
+            await  Movie.update(
+                 //Datos que cambiamos
+                 {numRent: numRent},
+                 //Donde..
+                {where: {movieId: attributes.movieId}}
+            ) 
+        }else {
+            attributes.numBuy=0;
+            attributes.numPlay=0;
+            this.newMovie(attributes);
+        }
+
+         let resultado = this.movieId(attributes.movieId); 
          return resultado;
      }
 
     //Modifica el número de compras de la película.
-     async buyMovie(attributes){        
-        let numBuy = attributes.numBuy + 1;
+     async buyMovie(attributes){     
+
+        let search = await this.movieId(attributes.movieId);
+       console.log("Busqueda de la pelicula: ",search);
+        if (search != null){        
+            let numBuy = search.numBuy + 1;
+
+            await  Movie.update(
+                //Datos que cambiamos
+                {numBuy: numBuy},
+                //Donde..
+                {where: {movieId: attributes.movieId}}
+            ) 
         
-        await  Movie.update(
-             //Datos que cambiamos
-             {numBuy: numBuy},
-             //Donde..
-             {where: {movieId: attributes.movieId}}
-         ) 
-         let resultado = this.movieID(attributes.movieId); 
+        }else {
+            attributes.numPlay=0;
+            attributes.numRent=0;
+            this.newMovie(attributes);
+        }
+
+         let resultado = this.movieId(attributes.movieId); 
          return resultado;
      }
-
-
 
 }
 

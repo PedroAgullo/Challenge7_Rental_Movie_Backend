@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
     numRent: DataTypes.INTEGER,
     numPlay: DataTypes.INTEGER,
     poster_path: DataTypes.STRING,
-    backdrop_path: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Movie',

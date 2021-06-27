@@ -19,15 +19,18 @@ module.exports = {
       },
       numBuy: {
         type: Sequelize.INTEGER,
-        defaultValue : 1
+        defaultValue : 0
       },
       numRent: {
         type: Sequelize.INTEGER,
-        defaultValue : 1
+        defaultValue : 0
       },
       numPlay: {
         type: Sequelize.INTEGER,
-        defaultValue : 1
+        defaultValue : 0
+      },
+      poster_path:{
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

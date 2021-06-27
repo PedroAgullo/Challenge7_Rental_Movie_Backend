@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     movieId: DataTypes.INTEGER,
     precio: DataTypes.INTEGER,
     photoMovie: DataTypes.STRING,
-    title: DataTypes.STRING
+    title: DataTypes.STRING,
+    type: DataTypes.STRING
     // rentStart: DataTypes.DATE,
     // rentEnd: DataTypes.DATE
   }, {
