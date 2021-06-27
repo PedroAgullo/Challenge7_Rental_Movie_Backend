@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const moviesController = require("../controllers/moviesController.js");
+const authenticate = require('../middleware/authenticate.js');
+
 
 // CRUD
 
@@ -12,6 +14,7 @@ router.get('/', async (req, res) => {
         });
     }
 });
+
 
 
 router.get('/popular', async (req, res) => {
@@ -95,6 +98,21 @@ router.post('/video', async (req, res)=> {
     } catch (err) {
         return res.status(500).json({
             mensaje: err.message
+        });
+    }
+});
+
+
+
+// PUSH - CREATE A NEW ORDER
+router.post("/new", authenticate, async (req,res) =>{
+    try{
+        let body = req.body;
+        console.log(body);
+        res.json(await moviesController.newMovie(body));
+    }catch (err){
+        return res.status(500).json({
+            message: err.message
         });
     }
 });

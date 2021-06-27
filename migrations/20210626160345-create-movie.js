@@ -19,15 +19,15 @@ module.exports = {
       },
       numBuy: {
         type: Sequelize.INTEGER,
-        defaultValue = 1
+        defaultValue : 1
       },
       numRent: {
         type: Sequelize.INTEGER,
-        defaultValue = 1
+        defaultValue : 1
       },
       numPlay: {
         type: Sequelize.INTEGER,
-        defaultValue = 1
+        defaultValue : 1
       },
       createdAt: {
         allowNull: false,

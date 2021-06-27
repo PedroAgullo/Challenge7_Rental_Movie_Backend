@@ -1,3 +1,4 @@
+const { Movie } = require('../models'); //No necesita indicarle el archivo, solo la carpeta, ya que lo desestructura desde index.js
 const axios = require("axios");
 
 class Pelicula{
@@ -61,7 +62,24 @@ class Pelicula{
         let res = await axios.get(`http://api.themoviedb.org/3/search/person?query=${act}&api_key=210d6a5dd3f16419ce349c9f1b200d6d`);
         return res.data;
     }
+
+
+    async newMovie(body){
+        return Movie.create(body);
+    }
+
+    
+
+
 }
+
+
+
+
+
+
+
+
 
 let moviesController = new Pelicula();
 module.exports = moviesController;
