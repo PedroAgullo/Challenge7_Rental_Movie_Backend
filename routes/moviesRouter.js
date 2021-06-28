@@ -67,9 +67,10 @@ router.post('/actor', async (req, res)=> {
 
 router.post('/genre', async (req, res)=> {
     try {
-        let movieGenre = req.body.genre;
-        movieGenre = movieGenre.charAt(0).toUpperCase() + movieGenre.slice(1);
-        res.json(await moviesController.searchByGenre(movieGenre));
+        console.log("Entro en el router de genre", req.body);        
+        // let movieGenre = req.body.genre;
+        // movieGenre = movieGenre.charAt(0).toUpperCase() + movieGenre.slice(1);
+        res.json(await moviesController.searchByGenre(req.body.genre));
     } catch (err) {
         return res.status(500).json({
             mensaje: err.message
@@ -81,8 +82,9 @@ router.post('/genre', async (req, res)=> {
 //Traer películas recomendadas sobre un ID de una película
 router.post('/recommendations', async (req, res)=> {
     try {
+        console.log("Estoy en recomendaciones", req.body);
         let id = req.body.id;        
-        res.json(await moviesController.searchByGenre(id));
+        res.json(await moviesController.searchRecommendations(id));
     } catch (err) {
         return res.status(500).json({
             mensaje: err.message

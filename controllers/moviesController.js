@@ -35,7 +35,8 @@ class Pelicula{
 
     //Trae una lista de películas recomendadas para uan película sobre su ID
     async searchRecommendations(id){
-        let res = await axios.get(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1`)
+        console.log(id);
+        let res = await axios.post(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1`);
         return res.data;
     }
 
@@ -46,31 +47,29 @@ class Pelicula{
     }
 
     async searchByGenre(movieGenre){
+        console.log(movieGenre);
+        // let listId = await axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US')
         
-        let listId = await axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US')
-        
-        let genreId = listId.data.genres;
+        // let genreId = listId.data.genres;
         
         
-        for (let i in genreId){
-            if (movieGenre === genreId[i].name) {
-                let res = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${genreId[i].id}`);
-                return res.data;
-            }
-        }
-        
+        // for (let i in genreId){
+        //     if (movieGenre === genreId[i].name) {
+        //         let res = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${genreId[i].id}`);
+        //          res.data;
+        //     }
+        // }
+        // parseInt(movieGenre);
+        console.log(movieGenre, "Despues");
+         let resultado = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${movieGenre}&adult=false`);
+         console.log(resultado.data);
+         return resultado.data;
     }
 
     async searchByAct(act){
         let res = await axios.get(`http://api.themoviedb.org/3/search/person?query=${act}&api_key=210d6a5dd3f16419ce349c9f1b200d6d`);
         return res.data;
     }
-
-
-
-
-
-
 
 
     //FUNCIONES PARA ACCEDER A LA BASE DE DATOS DE mysql
