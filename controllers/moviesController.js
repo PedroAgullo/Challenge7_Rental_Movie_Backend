@@ -25,8 +25,8 @@ class Pelicula{
     }
 
     //Search videos of a movie by ID
-    async searchById(id){
-        let res = await axios.get(`https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US`)
+    async searchVideo(id){
+        let res = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US`)
         return res.data;
     }
 
@@ -64,7 +64,13 @@ class Pelicula{
     }
 
 
-    //FUNCIONES PARA ACCEDER A LA BASE DE DATOS DE WORKBENCH
+
+
+
+
+
+
+    //FUNCIONES PARA ACCEDER A LA BASE DE DATOS DE mysql
 
     //Añade una nueva película a la base de datos.
     async newMovie(body){
@@ -75,6 +81,13 @@ class Pelicula{
         return Movie.findOne({
             where: {movieId}
         })
+    }
+
+
+    //Nos devuelve todas las películas que hay en la base de datos de mysql
+    async allMovies(){
+
+        return Movie.findAll();
     }
 
     //Modifica el número de reproducciones de la película.

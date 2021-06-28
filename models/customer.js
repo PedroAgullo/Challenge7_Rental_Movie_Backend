@@ -30,6 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     admin: DataTypes.BOOLEAN,
     isActive: DataTypes.BOOLEAN,
+    lastSearch: DataTypes.INTEGER,
+    lastPlay: DataTypes.INTEGER,
     token: DataTypes.STRING
   }, {
     sequelize,

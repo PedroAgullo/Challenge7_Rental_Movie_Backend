@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const moviesController = require("../controllers/moviesController.js");
 const authenticate = require('../middleware/authenticate.js');
+const admin = require('../middleware/admin.js');
 
 
 // CRUD
@@ -94,7 +95,7 @@ router.post('/recommendations', async (req, res)=> {
 router.post('/video', async (req, res)=> {
     try {
         let id = req.body.id;
-        res.json(await moviesController.searchVideo(movieGenre));
+        res.json(await moviesController.searchVideo(id));
     } catch (err) {
         return res.status(500).json({
             mensaje: err.message
@@ -104,6 +105,8 @@ router.post('/video', async (req, res)=> {
 
 
 
+
+//A partir de aqui apuntamos a la base de datos de mysql
 // PUSH - CREATE A NEW ORDER
 router.post("/new", authenticate, async (req,res) =>{
     try{
@@ -117,9 +120,18 @@ router.post("/new", authenticate, async (req,res) =>{
     }
 });
 
+router.get('/all', admin, async (req, res) => {
+    try {
+        console.log("Entramos en el router de allMovies");
+        res.json(await moviesController.allMovies());
+    }catch (err) {
+        return res.status(500).json({
+        message: err.message
+        });
+    }
+});
 
-
-router.post("/play", authenticate, async (req,res) =>{
+router.get("/play", authenticate, async (req,res) =>{
     try{
         let body = req.body;
         console.log(body);
