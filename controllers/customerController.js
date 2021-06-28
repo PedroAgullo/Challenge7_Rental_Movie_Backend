@@ -19,9 +19,12 @@ class Client {
     }
 
     async mailCustomer(email){
+        console.log("Estoy en mailCustomer");
+        console.log("email de mailCustomer", email);
          let resultado = await Customer.findOne({
             where: {email}
         })
+        console.log("Resultado de mailCustomer",resultado);
         return resultado;
     }
 
@@ -37,10 +40,6 @@ class Client {
         return Customer.findByPk(id);
 
     }
-
-
-
-
 
 
     async newCustomer(user) {

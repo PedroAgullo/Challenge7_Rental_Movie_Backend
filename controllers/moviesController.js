@@ -27,7 +27,10 @@ class Pelicula{
     //Search videos of a movie by ID
     async searchVideo(id){
         let res = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US`)
-        return res.data;
+        let urlTrailer = "https://www.youtube.com/watch?v=" + res.data.results[0].key;
+        console.log(res.data.results[0].key);
+        console.log(urlTrailer);
+        return urlTrailer;
     }
 
     //Trae una lista de películas recomendadas para uan película sobre su ID
@@ -90,6 +93,7 @@ class Pelicula{
         return Movie.findAll();
     }
 
+    
     //Modifica el número de reproducciones de la película.
     async playMovie(attributes){ 
 
@@ -114,11 +118,11 @@ class Pelicula{
         return resultado;
      }
 
+
     //Modifica el número de alquileres de la película.
         async rentMovie(attributes){
 
-        let numRent = attributes.numRent + 1;
-
+            let search = await this.movieId(attributes.movieId);
 
         if (search != null){        
             let numRent = search.numRent + 1;
@@ -137,6 +141,7 @@ class Pelicula{
          let resultado = this.movieId(attributes.movieId); 
          return resultado;
      }
+
 
     //Modifica el número de compras de la película.
      async buyMovie(attributes){     
@@ -164,14 +169,6 @@ class Pelicula{
      }
 
 }
-
-
-
-
-
-
-
-
 
 let moviesController = new Pelicula();
 module.exports = moviesController;

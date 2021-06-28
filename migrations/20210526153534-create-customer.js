@@ -23,6 +23,7 @@ module.exports = {
       birthdate: {
         type: Sequelize.DATEONLY
       },
+
       phone: {
         type: Sequelize.INTEGER
       },
@@ -57,6 +58,14 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
+      lastSearch: {
+        type: Sequelize.STRING,
+        defaultValue : 0
+      },
+      lastPlay: {
+        type: Sequelize.INTEGER,
+        defaultValue : 0
+      },      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

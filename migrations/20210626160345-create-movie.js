@@ -32,14 +32,6 @@ module.exports = {
       poster_path:{
         type: Sequelize.STRING,
       },
-      lastSearch: {
-        type: Sequelize.INTEGER,
-        defaultValue : 0
-      },
-      lastPlay: {
-        type: Sequelize.INTEGER,
-        defaultValue : 0
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
