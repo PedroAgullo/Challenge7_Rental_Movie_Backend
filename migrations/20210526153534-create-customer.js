@@ -70,17 +70,18 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
-      parentalControl:{
+      pinParental:{
         type: Sequelize.INTEGER,
-        defaultValue: false
+        defaultValue: 0000
       },
       ccNumber:{
         type: Sequelize.STRING,
-        defaultValue: false
+        defaultValue: ""
       },
       ccName:{
         type: Sequelize.STRING,
-        defaultValue: false
+        defaultValue: false,
+        defaultValue: ""
       },
       ccDate:{
         type: Sequelize.DATE,

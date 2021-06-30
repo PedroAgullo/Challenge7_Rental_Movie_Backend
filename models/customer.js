@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     token: DataTypes.STRING,
     premium: DataTypes.BOOLEAN,
     infantil: DataTypes.BOOLEAN,
-    parentalControl: DataTypes.INTEGER,
+    pinParental: DataTypes.INTEGER,
     ccNumber: DataTypes.STRING,
     ccName: DataTypes.STRING,
     ccDate: DataTypes.DATE,
