@@ -27,7 +27,7 @@ class Pelicula{
     //Search videos of a movie by ID
     async searchVideo(id){
         let res = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US`)
-        let urlTrailer = "https://www.youtube.com/watch?v=" + res.data.results[0].key;
+        let urlTrailer = "https://www.youtube.com/embed/" + res.data.results[0].key;
         console.log(res.data.results[0].key);
         console.log(urlTrailer);
         return urlTrailer;
@@ -36,7 +36,7 @@ class Pelicula{
     //Trae una lista de películas recomendadas para uan película sobre su ID
     async searchRecommendations(id){
         console.log(id);
-        let res = await axios.post(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1`);
+        let res = await axios.get(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1`);
         return res.data;
     }
 
@@ -73,7 +73,6 @@ class Pelicula{
 
 
     //FUNCIONES PARA ACCEDER A LA BASE DE DATOS DE mysql
-
     //Añade una nueva película a la base de datos.
     async newMovie(body){
         return Movie.create(body);

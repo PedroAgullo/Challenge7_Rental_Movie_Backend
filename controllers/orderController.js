@@ -8,9 +8,9 @@ class Rent{
     // Métodos controladores
     async newOrder(body){
         console.log("Estoy en el controller de neworder Body",body);
-        let busqueda = await Order.findAll({where: {customerId: body.customerId,movieId: body.movieId, type: 'comprar'}});
+        let busqueda = await Order.findAll({where: {customerId: body.customerId,movieId: body.movieId}});
         console.log("Encontrado esto : ", busqueda);
-        if (busqueda){
+        if (busqueda[0]){
             throw new Error("Ya habías adquirido esta película. Ve a tu perfil para poder verla.");
         }
 
