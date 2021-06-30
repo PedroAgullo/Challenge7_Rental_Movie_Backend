@@ -65,7 +65,31 @@ module.exports = {
       lastPlay: {
         type: Sequelize.INTEGER,
         defaultValue : 0
-      },      
+      },     
+      infantil:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      parentalControl:{
+        type: Sequelize.INTEGER,
+        defaultValue: false
+      },
+      ccNumber:{
+        type: Sequelize.STRING,
+        defaultValue: false
+      },
+      ccName:{
+        type: Sequelize.STRING,
+        defaultValue: false
+      },
+      ccDate:{
+        type: Sequelize.DATE,
+        defaultValue: false
+      },
+      ccCode:{
+        type: Sequelize.STRING,
+        defaultValue: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

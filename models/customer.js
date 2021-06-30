@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     lastName2: DataTypes.STRING,
     dni: DataTypes.STRING,
     birthdate: DataTypes.DATEONLY,
-    phone: DataTypes.INTEGER,
+    phone: DataTypes.STRING,
     address: DataTypes.STRING,
     city: DataTypes.STRING,
     postalCode: DataTypes.STRING,
@@ -33,7 +33,13 @@ module.exports = (sequelize, DataTypes) => {
     lastSearch: DataTypes.INTEGER,
     lastPlay: DataTypes.INTEGER,
     token: DataTypes.STRING,
-    premium: DataTypes.BOOLEAN
+    premium: DataTypes.BOOLEAN,
+    infantil: DataTypes.BOOLEAN,
+    parentalControl: DataTypes.INTEGER,
+    ccNumber: DataTypes.STRING,
+    ccName: DataTypes.STRING,
+    ccDate: DataTypes.DATE,
+    ccCode: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Customer',

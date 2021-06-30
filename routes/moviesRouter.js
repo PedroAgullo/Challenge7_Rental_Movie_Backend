@@ -78,7 +78,6 @@ router.post('/genre', async (req, res)=> {
     }
 });
 
-
 //Traer películas recomendadas sobre un ID de una película
 router.post('/recommendations', async (req, res)=> {
     try {
@@ -91,7 +90,6 @@ router.post('/recommendations', async (req, res)=> {
         });
     }
 });
-
 
 //Encuentra videos sobre una película
 router.post('/video', async (req, res)=> {
