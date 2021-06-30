@@ -18,12 +18,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       dni: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique:true
       },
       birthdate: {
         type: Sequelize.DATEONLY
       },
-
       phone: {
         type: Sequelize.INTEGER
       },
@@ -71,8 +71,8 @@ module.exports = {
         defaultValue: false
       },
       pinParental:{
-        type: Sequelize.INTEGER,
-        defaultValue: 0000
+        type: Sequelize.STRING,
+        defaultValue: ""
       },
       ccNumber:{
         type: Sequelize.STRING,
@@ -80,16 +80,14 @@ module.exports = {
       },
       ccName:{
         type: Sequelize.STRING,
-        defaultValue: false,
         defaultValue: ""
       },
       ccDate:{
-        type: Sequelize.DATE,
-        defaultValue: false
+        type: Sequelize.DATE
       },
       ccCode:{
         type: Sequelize.STRING,
-        defaultValue: false
+        defaultValue: ""
       },
       createdAt: {
         allowNull: false,

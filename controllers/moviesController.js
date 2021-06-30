@@ -66,6 +66,16 @@ class Pelicula{
          return resultado.data;
     }
 
+    //Encuentra los proximos estrenos    
+    async findComingSoon() {
+        let res = await axios.get(
+          "https://api.themoviedb.org/3/movie/upcoming?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1"
+        );    
+        return res.data;
+        }
+
+
+
     async searchByAct(act){
         let res = await axios.get(`http://api.themoviedb.org/3/search/person?query=${act}&api_key=210d6a5dd3f16419ce349c9f1b200d6d`);
         return res.data;

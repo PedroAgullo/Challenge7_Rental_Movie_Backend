@@ -104,6 +104,17 @@ router.post('/video', async (req, res)=> {
 });
 
 
+//Proximos estrenos
+router.get("/soon", async (req, res) => {
+    try {
+      res.json(await moviesController.findComingSoon());
+    } catch (err) {
+      return res.status(500).json({
+        mensaje: err.mensaje,
+      });
+    }
+  });
+
 
 
 //A partir de aqui apuntamos a la base de datos de mysql
