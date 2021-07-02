@@ -80,7 +80,7 @@ router.post('/name', authenticate, async (req, res)=> {
 });
 
 //Add a new Customer
-router.post('/', async (req, res)=> {
+router.post('/', checkMail, async (req, res)=> {
     try {
         const body = req.body;
         console.log("Body que recibimos: ",body);
