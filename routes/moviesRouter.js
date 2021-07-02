@@ -28,6 +28,7 @@ router.get('/popular', async (req, res) => {
     }
 });
 
+
 //Búsqueda de película por ID
 router.post('/id', async (req, res)=> {             //id/:id
     try {

@@ -49,6 +49,18 @@ router.post('/all', admin, async (req, res) => {
     }
 });
 
+//Get - ALL ORDERS - BY TYPE
+router.post('/type', admin, async (req, res) => {
+    try {
+        console.log(req.body);
+       res.json(await orderController.orderType(req.body));
+
+   }catch (err) {
+       return res.status(500).json({
+           message: err.message
+       });
+   }
+});
 
 //Find order by ID
 router.post('/id', async (req, res)=> {             

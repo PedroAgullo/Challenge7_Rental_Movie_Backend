@@ -22,6 +22,22 @@ class Rent{
         return Order.findAll();
     }
 
+
+
+        //Encuentra las orders de 1 tipo.
+        async orderType(body){
+            console.log("El ritmo in the body en el backend: ", body);
+
+            let busqueda = await Order.findAll({
+                where: {type: body.type}
+            });
+            // console.log("Datos encontrados: ", busqueda);
+            return busqueda;
+        }
+        
+
+
+
     //Encuentra las ordenes de 1 usuario.
     async orderUser(body){
         let busqueda = await Order.findAll({
@@ -31,24 +47,24 @@ class Rent{
         return busqueda;
     }
 
+
+
     async orderId(body){
-
         return Order.findByPk(body.id);
-
     }
 
-    async allCities(){
 
+    async allCities(){
         let ordersFind = await Order.findAll();
         return Util.findCity(ordersFind);
     }
+
 
     async byCity(city){
         console.log(city, "esta es la citie que estás buscando");
         let ordersFind = await Order.findAll();
         return Util.findByCity(ordersFind, city);
     }
-
 
     async deleteOrder(id){
         return Order.destroy({
