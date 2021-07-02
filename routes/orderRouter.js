@@ -62,12 +62,27 @@ router.post('/type', admin, async (req, res) => {
    }
 });
 
+
 //Find order by ID
-router.post('/id', async (req, res)=> {             
+router.post('/id', admin, async (req, res)=> {             
     try {
-        console.log(id)
+        console.log(req.body.id)
         let body = req.body;
-        res.json(await orderController.orderId(body));
+        res.json(await orderController.orderId(req.body.id));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
+
+//Delete order
+router.post('/delete', admin, async (req, res)=> {             
+    try {
+        console.log(req.body.id)
+        let body = req.body;
+        res.json(await orderController.deleteOrder(req.body.id));
         
     } catch (err) {
         return res.status(500).json({
@@ -90,19 +105,6 @@ router.post("/", authenticate, async (req,res) =>{
     }
 });
 
-// UPDATE - MODIFY ORDER - ADMIN
 
-// DELETE - DELETE ORDER
-router.delete('/', admin, async (req, res) => {
-    try {
-        const body = req.body.id;
-        res.json(await orderController.deleteOrder(body));
-
-    }catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
-    }
-});
 
 module.exports = router;

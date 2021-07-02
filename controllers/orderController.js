@@ -67,6 +67,7 @@ class Rent{
     }
 
     async deleteOrder(id){
+        console.log("controller de DeleteOrder. ID: ", id);
         return Order.destroy({
             where: {id}
         })
