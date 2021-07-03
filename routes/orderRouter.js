@@ -4,8 +4,6 @@ const authenticate = require('../middleware/authenticate.js');
 const admin = require ('../middleware/admin.js');
 
 // CRUD
-
-
 //GET - ID ORDER - NO ADMIN
 router.get('/city', admin, async (req, res) => {
     try {
@@ -18,7 +16,6 @@ router.get('/city', admin, async (req, res) => {
        });
    }
 });
-
 
 //Trae los pedidos de 1 usuario.
 router.post('/user', authenticate, async (req, res) => {
@@ -35,9 +32,8 @@ router.post('/user', authenticate, async (req, res) => {
 });
 
 
-
 //GET - ALL ORDERS - ADMIN
-router.post('/all', admin, async (req, res) => {
+router.post('/all',  async (req, res) => {
      try {
          console.log(req.body);
         res.json(await orderController.allOrders());
@@ -54,7 +50,6 @@ router.post('/type', admin, async (req, res) => {
     try {
         console.log(req.body);
        res.json(await orderController.orderType(req.body));
-
    }catch (err) {
        return res.status(500).json({
            message: err.message

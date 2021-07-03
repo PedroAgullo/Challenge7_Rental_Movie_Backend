@@ -47,7 +47,7 @@ router.post('/id', async (req, res)=> {             //id/:id
 router.post('/title', async (req, res)=> {
     try {  
         let title = req.body.title;
-        res.json(await moviesController.searchByTitle(title));
+        res.json(await moviesController.searchByTitle(req.body));
     } catch (err) {
         return res.status(500).json({
             message: err.message
@@ -71,7 +71,7 @@ router.post('/genre', async (req, res)=> {
         console.log("Entro en el router de genre", req.body);        
         // let movieGenre = req.body.genre;
         // movieGenre = movieGenre.charAt(0).toUpperCase() + movieGenre.slice(1);
-        res.json(await moviesController.searchByGenre(req.body.genre));
+        res.json(await moviesController.searchByGenre(req.body));
     } catch (err) {
         return res.status(500).json({
             mensaje: err.message
@@ -134,7 +134,6 @@ router.post("/new", authenticate, async (req,res) =>{
 
 router.get('/all', admin, async (req, res) => {
     try {
-        console.log("Entramos en el router de allMovies");
         res.json(await moviesController.allMovies());
     }catch (err) {
         return res.status(500).json({
@@ -179,5 +178,17 @@ router.post("/rent", authenticate, async (req,res) =>{
     }
 });
 
+//Estadísticas
+router.post("/statsMovie", admin, async (req,res) =>{
+    try{
+        let body = req.body;
+        console.log(body);
+        res.json(await moviesController.statsOrderByTopMovie(body));
+    }catch (err){
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
 
 module.exports = router;

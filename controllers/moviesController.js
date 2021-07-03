@@ -41,28 +41,20 @@ class Pelicula{
     }
 
     // Method for "Getting movie by title"
-    async searchByTitle(title){
-        let res = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&query=${title}&page=1&include_adult=false`)
+    async searchByTitle(body){        
+        let res = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&query=${body.title}&page=${body.num}&include_adult=false`)
         return res.data;
     }
 
-    async searchByGenre(movieGenre){
-        console.log(movieGenre);
-        // let listId = await axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US')
-        
-        // let genreId = listId.data.genres;
-        
-        
-        // for (let i in genreId){
-        //     if (movieGenre === genreId[i].name) {
-        //         let res = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${genreId[i].id}`);
-        //          res.data;
-        //     }
-        // }
-        // parseInt(movieGenre);
-        console.log(movieGenre, "Despues");
-         let resultado = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${movieGenre}&adult=false`);
-         console.log(resultado.data);
+    //Encuentra titulos por género y numero de página.
+    async searchByGenre(body){
+        let num = body.num;
+        let genre= body.genre;
+        console.log("Entro en searchbyGenre. el body: ", num, genre);
+        let resultado = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${body.genre}&adult=false&page=${num}`);
+
+        //  let resultado = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${body.opc}&adult=false&page=${body.num}`);
+         console.log(resultado);
          return resultado.data;
     }
 
@@ -175,6 +167,27 @@ class Pelicula{
          let resultado = this.movieId(attributes.movieId); 
          return resultado;
      }
+
+
+     //Devuelve una lista ordenadas de películas según lo que le indiquemos
+    //  statsOrderByTopMovie
+    //  await  Movie.update(
+    //     //Datos que cambiamos
+    //     {numBuy: numBuy},
+    //     //Donde..
+    //     {where: {movieId: attributes.movieId}}
+    // ) 
+    //     return Movie.findAll();
+    // }
+
+    // async statsOrderByTopMovie(movieId){
+    //     return Movie.findAll({
+    //         where: {movieId}
+    //         Order:{}
+    //     })
+    // }
+
+
 
 }
 
