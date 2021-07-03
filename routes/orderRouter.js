@@ -77,6 +77,25 @@ router.post('/id', admin, async (req, res)=> {
     }
 });
 
+
+
+//Get - ALL ORDERS - BY ID and TYPE
+router.post('/idtype', authenticate, async (req, res) => {
+    try {
+        console.log(req.body);
+       res.json(await orderController.orderIdType(req.body));
+
+   }catch (err) {
+       return res.status(500).json({
+           message: err.message
+       });
+   }
+});
+
+
+
+
+
 //Delete order
 router.post('/delete', admin, async (req, res)=> {             
     try {

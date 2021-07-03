@@ -24,7 +24,7 @@ class Rent{
 
 
 
-        //Encuentra las orders de 1 tipo.
+        //Encuentra las orders de 1 tipo - admin.
         async orderType(body){
             console.log("El ritmo in the body en el backend: ", body);
 
@@ -42,6 +42,18 @@ class Rent{
     async orderUser(body){
         let busqueda = await Order.findAll({
             where: {customerId: body.customerId}
+        });
+        console.log("Datos encontrados: ", busqueda);
+        return busqueda;
+    }
+
+
+
+    async orderIdType(body){
+        console.log("El ritmo in the body en el backend: ", body);
+
+        let busqueda = await Order.findAll({
+            where: {customerId: body.id, type: body.type}
         });
         console.log("Datos encontrados: ", busqueda);
         return busqueda;
