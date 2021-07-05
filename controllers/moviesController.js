@@ -6,7 +6,6 @@ class Pelicula{
     // Métodos controladores
     async findTopRated(){
         let res = await axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1');
-        console.log(res.data);
         return res.data;
     }
 
@@ -14,7 +13,6 @@ class Pelicula{
     async findPopular(){
         
         let res = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1');
-        console.log(res.data);
         return res.data;
     }
 
@@ -28,14 +26,11 @@ class Pelicula{
     async searchVideo(id){
         let res = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US`)
         let urlTrailer = "https://www.youtube.com/embed/" + res.data.results[0].key;
-        console.log(res.data.results[0].key);
-        console.log(urlTrailer);
         return urlTrailer;
     }
 
     //Trae una lista de películas recomendadas para uan película sobre su ID
     async searchRecommendations(id){
-        console.log(id);
         let res = await axios.get(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1`);
         return res.data;
     }
@@ -50,11 +45,9 @@ class Pelicula{
     async searchByGenre(body){
         let num = body.num;
         let genre= body.genre;
-        console.log("Entro en searchbyGenre. el body: ", num, genre);
         let resultado = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${body.genre}&adult=false&page=${num}`);
 
         //  let resultado = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=210d6a5dd3f16419ce349c9f1b200d6d&with_genres=${body.opc}&adult=false&page=${body.num}`);
-         console.log(resultado);
          return resultado.data;
     }
 
@@ -65,8 +58,6 @@ class Pelicula{
         );    
         return res.data;
         }
-
-
 
     async searchByAct(act){
         let res = await axios.get(`http://api.themoviedb.org/3/search/person?query=${act}&api_key=210d6a5dd3f16419ce349c9f1b200d6d`);
@@ -147,7 +138,6 @@ class Pelicula{
      async buyMovie(attributes){     
 
         let search = await this.movieId(attributes.movieId);
-       console.log("Busqueda de la pelicula: ",search);
         if (search != null){        
             let numBuy = search.numBuy + 1;
 

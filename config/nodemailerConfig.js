@@ -13,7 +13,6 @@ const transport = nodemailer.createTransport({
 
 
 module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
-  console.log("entro en nodemailer para mandar el correo");
   transport.sendMail({
     from: user,
     to: email,
@@ -30,10 +29,7 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
 
 
 module.exports.sendConfirmationEmailNewClass = (name, email, roomName, roomDateStart) => {
-  console.log("Nombre del usuario: ", name);
-  console.log("Nombre del email", email);
-  console.log("Nombre del roomName: ", roomName);
-  console.log("Nombre del usuario: ", roomDateStart);
+
 
   transport.sendMail({
     from: user,

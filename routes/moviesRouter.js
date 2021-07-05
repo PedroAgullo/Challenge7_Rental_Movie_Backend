@@ -68,7 +68,6 @@ router.post('/actor', async (req, res)=> {
 
 router.post('/genre', async (req, res)=> {
     try {
-        console.log("Entro en el router de genre", req.body);        
         // let movieGenre = req.body.genre;
         // movieGenre = movieGenre.charAt(0).toUpperCase() + movieGenre.slice(1);
         res.json(await moviesController.searchByGenre(req.body));
@@ -82,7 +81,6 @@ router.post('/genre', async (req, res)=> {
 //Traer películas recomendadas sobre un ID de una película
 router.post('/recommendations', async (req, res)=> {
     try {
-        console.log("Estoy en recomendaciones", req.body);
         let id = req.body.id;        
         res.json(await moviesController.searchRecommendations(id));
     } catch (err) {
@@ -123,7 +121,6 @@ router.get("/soon", async (req, res) => {
 router.post("/new", authenticate, async (req,res) =>{
     try{
         let body = req.body;
-        console.log(body);
         res.json(await moviesController.newMovie(body));
     }catch (err){
         return res.status(500).json({
@@ -145,7 +142,6 @@ router.get('/all', admin, async (req, res) => {
 router.get("/play", authenticate, async (req,res) =>{
     try{
         let body = req.body;
-        console.log(body);
         res.json(await moviesController.playMovie(body));
     }catch (err){
         return res.status(500).json({
@@ -157,7 +153,6 @@ router.get("/play", authenticate, async (req,res) =>{
 router.post("/buy", authenticate, async (req,res) =>{
     try{
         let body = req.body;
-        console.log("Entro al controlador de buy");
         res.json(await moviesController.buyMovie(body));
     }catch (err){
         return res.status(500).json({
@@ -169,7 +164,6 @@ router.post("/buy", authenticate, async (req,res) =>{
 router.post("/rent", authenticate, async (req,res) =>{
     try{
         let body = req.body;
-        console.log(body);
         res.json(await moviesController.rentMovie(body));
     }catch (err){
         return res.status(500).json({
@@ -182,7 +176,6 @@ router.post("/rent", authenticate, async (req,res) =>{
 router.post("/statsMovie", admin, async (req,res) =>{
     try{
         let body = req.body;
-        console.log(body);
         res.json(await moviesController.statsOrderByTopMovie(body));
     }catch (err){
         return res.status(500).json({

@@ -4,7 +4,6 @@ const secret = "Papá, y tú, ¿qué querías ser de mayor cuando eras pequeño?
 const admin = (req, res, next) => {
 
     try {
-        console.log("token de admin", req.headers.authorization);
         if(!req.headers.authorization){
             // return new Error("No tienes autorización");
             throw new Error ("No tenías token ");

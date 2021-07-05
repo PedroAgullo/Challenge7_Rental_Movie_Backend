@@ -20,7 +20,6 @@ router.get('/', admin, async (req, res) => {
 //Find customer by ID
 router.post('/id', admin, async (req, res)=> {             
     try {
-        console.log("Entro en el router de ID");
         let id = req.body.customerId;
         res.json(await customerController.customerId(id));
         
@@ -34,7 +33,6 @@ router.post('/id', admin, async (req, res)=> {
 //Find customer by email
 router.post('/email', admin, async (req, res)=> {             
     try {
-        console.log("Entro en el router de email", req.body);
 
         let email = req.body.email;
         res.json(await customerController.mailCustomer(email));
@@ -83,7 +81,6 @@ router.post('/name', authenticate, async (req, res)=> {
 router.post('/', checkMail, async (req, res)=> {
     try {
         const body = req.body;
-        console.log("Body que recibimos: ",body);
         res.json(await customerController.newCustomer(body));
         
     } catch (err) {
@@ -107,6 +104,31 @@ router.post('/update', authenticate, async (req, res)=> {
     }
 });
 
+//MOdifica el atributo infantil del usuario
+router.post('/infantil', authenticate, async (req, res)=> {
+    try {
+        let attributes = req.body;
+        res.json(await customerController.modifyInfantil(attributes));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
+
+//MOdifica el atributo premium del usuario
+router.post('/premium', authenticate, async (req, res)=> {
+    try {
+        let attributes = req.body;
+        res.json(await customerController.modifyPremium(attributes));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
 
 //Delete a customer
 router.delete('/', admin, async (req, res) =>{

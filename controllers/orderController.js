@@ -7,9 +7,7 @@ class Rent{
 
     // Métodos controladores
     async newOrder(body){
-        console.log("Estoy en el controller de neworder Body",body);
         let busqueda = await Order.findAll({where: {customerId: body.customerId,movieId: body.movieId}});
-        console.log("Encontrado esto : ", busqueda);
         if (busqueda[0]){
             throw new Error("Ya habías adquirido esta película. Ve a tu perfil para poder verla.");
         }
@@ -18,7 +16,6 @@ class Rent{
     }
 
     async allOrders(){
-        console.log("Entro en el controller de allOrders")
         return Order.findAll();
     }
 
@@ -26,12 +23,10 @@ class Rent{
 
         //Encuentra las orders de 1 tipo - admin.
         async orderType(body){
-            console.log("El ritmo in the body en el backend: ", body);
 
             let busqueda = await Order.findAll({
                 where: {type: body.type}
             });
-            // console.log("Datos encontrados: ", busqueda);
             return busqueda;
         }
         
@@ -43,19 +38,15 @@ class Rent{
         let busqueda = await Order.findAll({
             where: {customerId: body.customerId}
         });
-        console.log("Datos encontrados: ", busqueda);
         return busqueda;
     }
 
 
-
     async orderIdType(body){
-        console.log("El ritmo in the body en el backend: ", body);
 
         let busqueda = await Order.findAll({
             where: {customerId: body.id, type: body.type}
         });
-        console.log("Datos encontrados: ", busqueda);
         return busqueda;
     }
 
@@ -73,13 +64,11 @@ class Rent{
 
 
     async byCity(city){
-        console.log(city, "esta es la citie que estás buscando");
         let ordersFind = await Order.findAll();
         return Util.findByCity(ordersFind, city);
     }
 
     async deleteOrder(id){
-        console.log("controller de DeleteOrder. ID: ", id);
         return Order.destroy({
             where: {id}
         })

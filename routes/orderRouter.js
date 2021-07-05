@@ -21,7 +21,6 @@ router.get('/city', admin, async (req, res) => {
 router.post('/user', authenticate, async (req, res) => {
     try {
         let body = req.body;
-        console.log("Datos del body: ", body);
         res.json(await orderController.orderUser(body));
 
    }catch (err) {
@@ -35,7 +34,6 @@ router.post('/user', authenticate, async (req, res) => {
 //GET - ALL ORDERS - ADMIN
 router.post('/all',  async (req, res) => {
      try {
-         console.log(req.body);
         res.json(await orderController.allOrders());
 
     }catch (err) {
@@ -48,7 +46,6 @@ router.post('/all',  async (req, res) => {
 //Get - ALL ORDERS - BY TYPE
 router.post('/type', admin, async (req, res) => {
     try {
-        console.log(req.body);
        res.json(await orderController.orderType(req.body));
    }catch (err) {
        return res.status(500).json({
@@ -61,7 +58,6 @@ router.post('/type', admin, async (req, res) => {
 //Find order by ID
 router.post('/id', admin, async (req, res)=> {             
     try {
-        console.log(req.body.id)
         let body = req.body;
         res.json(await orderController.orderId(req.body.id));
         
@@ -77,7 +73,6 @@ router.post('/id', admin, async (req, res)=> {
 //Get - ALL ORDERS - BY ID and TYPE
 router.post('/idtype', authenticate, async (req, res) => {
     try {
-        console.log(req.body);
        res.json(await orderController.orderIdType(req.body));
 
    }catch (err) {
@@ -94,7 +89,6 @@ router.post('/idtype', authenticate, async (req, res) => {
 //Delete order
 router.post('/delete', admin, async (req, res)=> {             
     try {
-        console.log(req.body.id)
         let body = req.body;
         res.json(await orderController.deleteOrder(req.body.id));
         
@@ -110,7 +104,6 @@ router.post('/delete', admin, async (req, res)=> {
 router.post("/", authenticate, async (req,res) =>{
     try{
         let body = req.body;
-        console.log(body);
         res.json(await orderController.newOrder(body));
     }catch (err){
         return res.status(500).json({

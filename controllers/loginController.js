@@ -7,7 +7,6 @@ const secret = "Papá, y tú, ¿qué querías ser de mayor cuando eras pequeño?
 class LoginController {
 
     async validate(mailCheck,passwordCheck){
-        console.log("Estoy en el controlador de login");
         let customer = await customerController.mailCustomer(mailCheck);
         if (customer == null){
             throw new Error('Wrong user or password');

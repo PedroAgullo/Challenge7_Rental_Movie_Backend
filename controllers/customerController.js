@@ -19,12 +19,10 @@ class Client {
     }
 
     async mailCustomer(email){
-        console.log("Estoy en mailCustomer");
-        console.log("email de mailCustomer", email);
+
          let resultado = await Customer.findOne({
             where: {email}
         })
-        console.log("Resultado de mailCustomer",resultado);
         return resultado;
     }
 
@@ -35,7 +33,6 @@ class Client {
     }
 
     async customerId(id){
-        console.log("Entro en el controller de user: ", id);
 
         return Customer.findByPk(id);
 
@@ -46,7 +43,6 @@ class Client {
     
         user.password = await bcrypt.hash(user.password, 10);
         
-        console.log("Datos que recibimos en customerController: ", user);
 
         //Creamos una token que enviamos por mail para activar
         const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -69,10 +65,8 @@ class Client {
           subscription: user.subscription,
           token: token
         }
-        console.log(user);
 
         let usuario = await Customer.create(user);
-        console.log("usuario creado", usuario);
     
         //Llamamos a la funcion para enviar el correo al usuario.
         
@@ -126,6 +120,37 @@ class Client {
 
         return resultado;
     }
+
+
+
+    async modifyInfantil(attributes){
+        await  Customer.update(
+             //Datos que cambiamos
+             {infantil: attributes.infantil},
+             //Donde..
+             {where: {id: attributes.idUser}}
+         )
+ 
+         let resultado = this.customerId(attributes.idUser);
+ 
+         return resultado;
+     }
+
+
+     async modifyPremium(attributes){
+        await  Customer.update(
+             //Datos que cambiamos
+             {premium: attributes.premium},
+             //Donde..
+             {where: {id: attributes.id}}
+         )
+ 
+         let resultado = this.customerId(attributes.id);
+ 
+         return resultado;
+     }
+
+
 }
 
 let customerController = new Client();
