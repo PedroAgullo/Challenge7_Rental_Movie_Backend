@@ -17,9 +17,6 @@ module.exports = {
       lastName2: {
         type: Sequelize.STRING
       },
-      dni: {
-        type: Sequelize.STRING
-      },
       birthdate: {
         type: Sequelize.DATEONLY
       },
@@ -36,10 +33,15 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique:true
       },
       password: {
         type: Sequelize.STRING
+      },
+      token:{
+        type: Sequelize.STRING,
+        defaultValue: ""
       },
       admin: {
         type: Sequelize.BOOLEAN,
@@ -47,11 +49,42 @@ module.exports = {
       },
       isActive:{
         type: Sequelize.BOOLEAN,
-        default: false
+        defaultValue: false
       },
       premium:{
         type: Sequelize.BOOLEAN,
         defaultValue: false
+      },
+      lastSearch: {
+        type: Sequelize.STRING,
+        defaultValue : 0
+      },
+      lastPlay: {
+        type: Sequelize.INTEGER,
+        defaultValue : 0
+      },     
+      infantil:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      pinParental:{
+        type: Sequelize.STRING,
+        defaultValue: ""
+      },
+      ccNumber:{
+        type: Sequelize.STRING,
+        defaultValue: ""
+      },
+      ccName:{
+        type: Sequelize.STRING,
+        defaultValue: ""
+      },
+      ccDate:{
+        type: Sequelize.DATE
+      },
+      ccCode:{
+        type: Sequelize.STRING,
+        defaultValue: ""
       },
       createdAt: {
         allowNull: false,

@@ -4,8 +4,6 @@ const authenticate = require('../middleware/authenticate.js');
 const admin = require ('../middleware/admin.js');
 
 // CRUD
-
-
 //GET - ID ORDER - NO ADMIN
 router.get('/city', admin, async (req, res) => {
     try {
@@ -19,10 +17,11 @@ router.get('/city', admin, async (req, res) => {
    }
 });
 
-router.post('/city', admin, async (req, res) => {
+//Trae los pedidos de 1 usuario.
+router.post('/user', authenticate, async (req, res) => {
     try {
-        let city = req.body.city;
-        res.json(await orderController.byCity(city));
+        let body = req.body;
+        res.json(await orderController.orderUser(body));
 
    }catch (err) {
        return res.status(500).json({
@@ -32,9 +31,8 @@ router.post('/city', admin, async (req, res) => {
 });
 
 
-
 //GET - ALL ORDERS - ADMIN
-router.get('/', admin, async (req, res) => {
+router.post('/all',  async (req, res) => {
      try {
         res.json(await orderController.allOrders());
 
@@ -45,12 +43,54 @@ router.get('/', admin, async (req, res) => {
     }
 });
 
+//Get - ALL ORDERS - BY TYPE
+router.post('/type', admin, async (req, res) => {
+    try {
+       res.json(await orderController.orderType(req.body));
+   }catch (err) {
+       return res.status(500).json({
+           message: err.message
+       });
+   }
+});
+
 
 //Find order by ID
-router.post('/id', authenticate, async (req, res)=> {             
+router.post('/id', admin, async (req, res)=> {             
     try {
         let body = req.body;
-        res.json(await orderController.orderId(body));
+        res.json(await orderController.orderId(req.body.id));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
+
+
+
+//Get - ALL ORDERS - BY ID and TYPE
+router.post('/idtype', authenticate, async (req, res) => {
+    try {
+       res.json(await orderController.orderIdType(req.body));
+
+   }catch (err) {
+       return res.status(500).json({
+           message: err.message
+       });
+   }
+});
+
+
+
+
+
+//Delete order
+router.post('/delete', admin, async (req, res)=> {             
+    try {
+        let body = req.body;
+        res.json(await orderController.deleteOrder(req.body.id));
         
     } catch (err) {
         return res.status(500).json({
@@ -64,7 +104,6 @@ router.post('/id', authenticate, async (req, res)=> {
 router.post("/", authenticate, async (req,res) =>{
     try{
         let body = req.body;
-        console.log(body);
         res.json(await orderController.newOrder(body));
     }catch (err){
         return res.status(500).json({
@@ -73,19 +112,6 @@ router.post("/", authenticate, async (req,res) =>{
     }
 });
 
-// UPDATE - MODIFY ORDER - ADMIN
 
-// DELETE - DELETE ORDER
-router.delete('/', admin, async (req, res) => {
-    try {
-        const body = req.body.id;
-        res.json(await orderController.deleteOrder(body));
-
-    }catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
-    }
-});
 
 module.exports = router;

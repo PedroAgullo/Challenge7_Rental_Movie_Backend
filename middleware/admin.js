@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
-const secret = "Competencia de Netflix";
+const secret = "Papá, y tú, ¿qué querías ser de mayor cuando eras pequeño? Y todo cambió...";
 
 const admin = (req, res, next) => {
 
     try {
-
         if(!req.headers.authorization){
             // return new Error("No tienes autorización");
             throw new Error ("No tenías token ");
@@ -15,7 +14,7 @@ const admin = (req, res, next) => {
 
         let auth = jwt.verify(token,secret);
 
-        if(auth.isAdmin != true){
+        if(auth.admin != true){
             throw new Error("No tienes permiso para realizar esta acción de admin");
         }
 

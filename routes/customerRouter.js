@@ -18,7 +18,7 @@ router.get('/', admin, async (req, res) => {
 });
 
 //Find customer by ID
-router.post('/id', authenticate, async (req, res)=> {             
+router.post('/id', admin, async (req, res)=> {             
     try {
         let id = req.body.customerId;
         res.json(await customerController.customerId(id));
@@ -29,6 +29,40 @@ router.post('/id', authenticate, async (req, res)=> {
         });
     }
 });
+
+//Find customer by email
+router.post('/email', admin, async (req, res)=> {             
+    try {
+
+        let email = req.body.email;
+        res.json(await customerController.mailCustomer(email));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
+
+
+
+//Find customer by dni
+router.post('/dni', admin, async (req, res)=> {             
+    try {
+        let dni = req.body.dni;
+        res.json(await customerController.dniCustomer(dni));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
+
+
+
+
+
 
 //Find customer by name
 router.post('/name', authenticate, async (req, res)=> {          
@@ -44,10 +78,9 @@ router.post('/name', authenticate, async (req, res)=> {
 });
 
 //Add a new Customer
-router.post('/', async (req, res)=> {
+router.post('/', checkMail, async (req, res)=> {
     try {
         const body = req.body;
-        console.log("Body que recibimos: ",body);
         res.json(await customerController.newCustomer(body));
         
     } catch (err) {
@@ -59,9 +92,9 @@ router.post('/', async (req, res)=> {
 
 
 //Modify a customer
-router.put('/', authenticate, async (req, res)=> {
+router.post('/update', authenticate, async (req, res)=> {
     try {
-        const attributes = req.body;
+        let attributes = req.body;
         res.json(await customerController.modifyCustomer(attributes));
         
     } catch (err) {
@@ -71,12 +104,38 @@ router.put('/', authenticate, async (req, res)=> {
     }
 });
 
+//MOdifica el atributo infantil del usuario
+router.post('/infantil', authenticate, async (req, res)=> {
+    try {
+        let attributes = req.body;
+        res.json(await customerController.modifyInfantil(attributes));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
+
+//MOdifica el atributo premium del usuario
+router.post('/premium', authenticate, async (req, res)=> {
+    try {
+        let attributes = req.body;
+        res.json(await customerController.modifyPremium(attributes));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
 
 //Delete a customer
-router.delete('/', admin, async (req, res) =>{
+router.post('/modify', admin, async (req, res) =>{
     try {
-        const id = req.body.id;
-        res.json(await customerController.deleteCustomer(id));
+        
+        
+        res.json(await customerController.modifyCustomer(req.body));
         
     }catch (err) {
         return res.status(500).json({
@@ -84,5 +143,18 @@ router.delete('/', admin, async (req, res) =>{
         }); 
     }
 });
+
+
+
+router.get("/confirm/:confirmationCode", async (req, res) => {
+    try {
+      token = req.params.confirmationCode;
+      res.json(await customerController.updateActive(token));
+    } catch (err) {
+      return res.status(500).json({
+        message: err.message,
+      });
+    }
+  });
 
 module.exports = router;

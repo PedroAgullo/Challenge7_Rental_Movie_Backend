@@ -20,12 +20,24 @@ module.exports = {
       movieId: {
         type: Sequelize.INTEGER
       },
-      rentStart: {
-        type: Sequelize.DATE
+      precio: {
+        type: Sequelize.INTEGER
       },
-      rentEnd: {
-        type: Sequelize.DATE
+      photoMovie:{
+        type: Sequelize.STRING
+      },   
+      title:{
+        type: Sequelize.STRING
+      },    
+      type:{
+        type: Sequelize.STRING
       },
+      // rentStart: {
+      //   type: Sequelize.DATE
+      // },
+      // rentEnd: {
+      //   type: Sequelize.DATE
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
