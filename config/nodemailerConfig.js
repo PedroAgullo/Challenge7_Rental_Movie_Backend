@@ -16,10 +16,10 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
   transport.sendMail({
     from: user,
     to: email,
-    subject: "xSmile Fitness - Por favor, confirma tu cuenta de correo.",
+    subject: "El Séptimo Arte - Por favor, confirma tu cuenta de correo.",
     html: `<h1>Correo de Activación de cuenta</h1>
         <h2>Hola ${name}</h2>
-        <p>Gracias por registrarte en xSmileFitness.  
+        <p>Gracias por registrarte en El Séptimo Arte. Tu videoclub online!  
         Por favor, confirma tu email haciendo click en el siguiente enlace.</p>
         <a href=http://localhost:3005/customer/confirm/${confirmationCode}> Activar cuenta.</a>
         </div>`,
@@ -29,8 +29,6 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
 
 
 module.exports.sendConfirmationEmailNewClass = (name, email, roomName, roomDateStart) => {
-
-
   transport.sendMail({
     from: user,
     to: email,

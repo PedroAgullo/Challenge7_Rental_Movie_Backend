@@ -19,6 +19,10 @@ class LoginController {
             throw new Error('Wrong user or password');
         }
 
+        if (!customer.isActive) {
+            throw new Error("La cuenta no está activa. Por favor, revisa tu correo electrónico y activa tu cuenta.");
+          }
+
         let payload = {
             idUser : customer.id,
             createdAt: new Date,

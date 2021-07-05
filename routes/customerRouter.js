@@ -131,10 +131,11 @@ router.post('/premium', authenticate, async (req, res)=> {
 });
 
 //Delete a customer
-router.delete('/', admin, async (req, res) =>{
+router.post('/modify', admin, async (req, res) =>{
     try {
-        const id = req.body.id;
-        res.json(await customerController.deleteCustomer(id));
+        
+        
+        res.json(await customerController.modifyCustomer(req.body));
         
     }catch (err) {
         return res.status(500).json({
@@ -155,8 +156,5 @@ router.get("/confirm/:confirmationCode", async (req, res) => {
       });
     }
   });
-  
-
-
 
 module.exports = router;

@@ -41,6 +41,13 @@ class Rent{
         return busqueda;
     }
 
+        //Encuentra las ordenes de 1 usuario.
+        async orderUserMovie(body){
+            let busqueda = await Order.findAll({
+                where: {customerId: body.customerId}
+            });
+            return busqueda;
+        }
 
     async orderIdType(body){
 

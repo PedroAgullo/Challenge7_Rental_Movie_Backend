@@ -35,15 +35,12 @@ class Client {
     async customerId(id){
 
         return Customer.findByPk(id);
-
     }
-
 
     async newCustomer(user) {
     
         user.password = await bcrypt.hash(user.password, 10);
         
-
         //Creamos una token que enviamos por mail para activar
         const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let token = '';
@@ -75,12 +72,9 @@ class Client {
         return usuario;
       }
     
-
       async findByToken(token) {
         return Customer.findAll({where:{ token: token }});
       }
-
-
 
       //Activa la cuenta del usuario buscando la token dada por el parámetro.
       async updateActive(token) {
@@ -109,6 +103,7 @@ class Client {
     }
 
     async modifyCustomer(attributes){
+        console.log(attributes);
        await  Customer.update(
             //Datos que cambiamos
             {phone: attributes.phone, address: attributes.address, city: attributes.city, postalcode: attributes.postalcode},
@@ -120,8 +115,6 @@ class Client {
 
         return resultado;
     }
-
-
 
     async modifyInfantil(attributes){
         await  Customer.update(
@@ -136,7 +129,6 @@ class Client {
          return resultado;
      }
 
-
      async modifyPremium(attributes){
         await  Customer.update(
              //Datos que cambiamos
@@ -150,8 +142,7 @@ class Client {
          return resultado;
      }
 
-
-}
+    }
 
 let customerController = new Client();
 module.exports = customerController;

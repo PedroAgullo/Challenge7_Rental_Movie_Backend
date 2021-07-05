@@ -17,10 +17,6 @@ module.exports = {
       lastName2: {
         type: Sequelize.STRING
       },
-      dni: {
-        type: Sequelize.STRING,
-        unique:true
-      },
       birthdate: {
         type: Sequelize.DATEONLY
       },
